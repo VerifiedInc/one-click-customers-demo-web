@@ -53,29 +53,3 @@ npm run dev
 ```
 
 _Note: The demo will launch on the specified `PORT` in the `.env` file._
-
-### Database
-
-To have local development currently is just running a docker image:
-
-Pull image:
-
-```sh
-docker pull postgres:latest
-```
-
-Run image:
-
-```sh
-docker run --name one-click-demo-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=oneclick_demo -p 5444:5432 -d postgres
-```
-
-#### Migration And Entity
-
-These scripts are related to Prisma, a database toolkit that includes an Object-Relational Mapping (ORM) for Node.js and TypeScript. They are used to manage your database schema and generate Prisma Client.
-
-1. `"db:migrate:dev": "prisma migrate dev"`: This script is used to apply migrations in a development environment. It creates a new migration if the Prisma schema has changed, applies the migration to the database, and generates Prisma Client.
-
-2. `"db:migrate:prod": "prisma migrate deploy"`: This script is used to apply migrations in a production environment. It applies all pending migrations to the database. Unlike `prisma migrate dev`, it does not create new migrations or generate Prisma Client.
-
-3. `"db:generate": "prisma generate"`: This script is used to generate Prisma Client based on your Prisma schema. Prisma Client is an auto-generated and type-safe query builder for Node.js and TypeScript.
