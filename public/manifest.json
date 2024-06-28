@@ -1,0 +1,6 @@
+{
+  "short_name": "Wallet",
+  "name": "Unum ID Wallet",
+  "start_url": ".",
+  "display": "standalone"
+}
