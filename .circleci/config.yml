@@ -30,7 +30,7 @@ workflows:
             - AWS-Root-Account
             - Slack-Context
           account_id_1: '408067220840'
-          repo: 1click-demo-customer-web
+          repo: 1click-customers-demo-web
           image_tag_1: '${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}'
           image_tag_2: dev-latest
           filters:
@@ -48,7 +48,7 @@ workflows:
           compile_script_name: build:sourcemap
           cache_version: v6
           sentry_org: verified-network
-          sentry_project: 1click-demo-customer-web
+          sentry_project: 1click-customer-demo-web
           filters:
             branches:
               only:
@@ -62,8 +62,8 @@ workflows:
             - AWS-Root-Account
             - Slack-Context
           account_id: '408067220840'
-          repo: 1click-demo-customer-web
-          deployment: one-click-demo-customer-web
+          repo: 1click-customers-demo-web
+          deployment: one-click-customer-demo-web
           cluster_name: dev-account-saas-cluster
           namespace: demos
           image_tag: dev-latest
@@ -92,7 +92,7 @@ workflows:
             - Slack-Context
           account_id_1: 058264190665
           publish_image_tag_1: true
-          repo: 1click-demo-customer-web
+          repo: 1click-customers-demo-web
           image_tag_1: '${CIRCLE_TAG}'
           image_tag_2: staging-latest
           filters:
@@ -111,7 +111,7 @@ workflows:
           compile_script_name: build:sourcemap
           cache_version: v6
           sentry_org: verified-network
-          sentry_project: 1click-demo-customer-web
+          sentry_project: 1click-customer-demo-web
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+.*$/
@@ -126,8 +126,8 @@ workflows:
             - AWS-Root-Account
             - Slack-Context
           account_id: 058264190665
-          repo: 1click-demo-customer-web
-          deployment: one-click-demo-customer-web
+          repo: 1click-customers-demo-web
+          deployment: one-click-customer-demo-web
           cluster_name: staging-account-core-cluster
           namespace: demos
           image_tag: '${CIRCLE_TAG}'
@@ -146,7 +146,7 @@ workflows:
             - AWS-Root-Account
             - Slack-Context
           account_id_1: '408067220840'
-          repo: 1click-demo-customer-web
+          repo: 1click-customers-demo-web
           image_tag_1: '${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}'
           image_tag_2: test-latest
           filters:
@@ -162,7 +162,7 @@ workflows:
           compile_script_name: build:sourcemap
           cache_version: v6
           sentry_org: verified-network
-          sentry_project: 1click-demo-customer-web
+          sentry_project: 1click-customer-demo-web
           filters:
             branches:
               only:
@@ -176,8 +176,8 @@ workflows:
             - AWS-Root-Account
             - Slack-Context
           account_id: '408067220840'
-          repo: 1click-demo-customer-web
-          deployment: one-click-demo-customer-web
+          repo: 1click-customers-demo-web
+          deployment: one-click-customer-demo-web
           cluster_name: dev-account-saas-cluster
           namespace: demos
           image_tag: test-latest
