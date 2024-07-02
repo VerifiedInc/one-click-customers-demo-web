@@ -21,8 +21,10 @@ import { rooms } from '~/utils/socket';
 import { dateUtils } from '~/utils/date';
 
 import { useIsOneClick } from '~/hooks/useIsOneClick';
+import { useBrand } from '~/hooks/useBrand';
 import { useIsOneClickNonHosted } from '~/hooks/useIsOneClickNonHosted';
 import { OneClickForm } from '~/features/register/components/OneClickForm';
+import { LogInAndRegister } from '~/components/LoginAndRegister';
 import { OneClickFormNonHosted } from '~/features/register/components/OneClickFormNonHosted';
 import { logoutUseCase } from '~/features/logout/usecases/logoutUseCase';
 
@@ -158,6 +160,7 @@ export const loader: LoaderFunction = async ({ request, context }) => {
 export default function Register() {
   const isOneClick = useIsOneClick();
   const isOneClickNonHosted = useIsOneClickNonHosted();
+  const brand = useBrand();
 
   return (
     <Box
@@ -169,6 +172,7 @@ export default function Register() {
       {/* When is regular flow, render the default form */}
       {isOneClick && !isOneClickNonHosted && <OneClickForm />}
       {isOneClickNonHosted && <OneClickFormNonHosted />}
+      <LogInAndRegister theme={brand.theme} sx={{ maxWidth: 264 }} />
     </Box>
   );
 }
