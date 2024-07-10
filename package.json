@@ -45,6 +45,7 @@
     "@googlemaps/js-api-loader": "^1.16.6",
     "@hookform/resolvers": "^3.3.4",
     "@lezer/highlight": "^1.2.0",
+    "@mona-health/react-input-mask": "^3.0.3",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.5",
     "@newrelic/winston-enricher": "^4.0.1",

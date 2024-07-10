@@ -1,14 +1,15 @@
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useFetcher, useSearchParams } from '@remix-run/react';
-import { Box, Dialog, TextField, Typography } from '@mui/material';
+import { Box, Dialog, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
 
 import { phoneSchema } from '~/validations/phone.schema';
-import { shortenBirthDateSchema } from '~/validations/birthDate.schema';
+import { USDateSchema } from '~/validations/date.schema';
 import { useBrand } from '~/hooks/useBrand';
 import { useField } from '~/hooks/useField';
-import { InputMask } from '~/components/InputMask';
+
 import PhoneInput from '~/components/PhoneInput';
+import { DateInput } from '~/components/DateInput';
 
 import { oneClickNonHostedSchema } from '~/validations/oneClickNonHosted.schema';
 import { OneClickHeader } from '~/features/register/components/OneClickHeader';
@@ -23,7 +24,7 @@ export function OneClickFormNonHosted() {
   const phone = useField({ name: 'phone', schema: phoneSchema });
   const birthDate = useField({
     name: 'birthDate',
-    schema: shortenBirthDateSchema,
+    schema: USDateSchema,
   });
 
   const [searchParams] = useSearchParams();
@@ -61,8 +62,19 @@ export function OneClickFormNonHosted() {
 
   const handleFieldChange =
     (field: ReturnType<typeof useField>) =>
-    (event: string | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const value = typeof event === 'string' ? event : event.target.value;
+    (
+      event:
+        | string
+        | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        | { target: { value: string } }
+    ) => {
+      let value = typeof event === 'string' ? event : event.target.value;
+
+      // DateInput returns a timestamp string when the date is valid, otherwise an empty string.
+      if (field.name === 'birthDate' && value) {
+        value = new Intl.DateTimeFormat('us').format(Number(value));
+      }
+
       field.change(value);
 
       const isFormValid = oneClickNonHostedSchema.safeParse({
@@ -148,26 +160,20 @@ export function OneClickFormNonHosted() {
             disabled={isFetching}
             inputProps={{ placeholder: undefined }}
           />
-          <TextField
-            name='birthDate'
-            label='Birthday'
-            value={birthDate.value}
-            onChange={handleFieldChange(birthDate)}
-            error={birthDate.touched && !!birthDate.error}
-            helperText={(birthDate.touched && birthDate.error) || 'MMDD'}
-            disabled={isFetching}
-            sx={{ mt: 2 }}
-            inputProps={{
-              unmask: false,
-              lazy: true,
-              mask: '0000',
-              inputMode: 'numeric',
-            }}
-            InputProps={{
-              inputComponent: InputMask as any,
-              autoComplete: 'bday',
-            }}
-          />
+          <Box sx={{ width: '100%', mt: 2 }}>
+            <DateInput
+              name='birthDate'
+              label='Birthday'
+              value={birthDate.value}
+              onChange={handleFieldChange(birthDate)}
+              error={birthDate.touched && !!birthDate.error}
+              helperText={
+                (birthDate.touched && birthDate.error) || 'MM/DD/YYYY'
+              }
+              disabled={isFetching}
+              InputProps={{ autoComplete: 'bday' }}
+            />
+          </Box>
           {error && (
             <Typography variant='body2' sx={{ marginTop: 2 }} color={red[500]}>
               {error}
