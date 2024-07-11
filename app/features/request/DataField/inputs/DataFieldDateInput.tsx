@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useCredentialsDisplayItemValid } from '~/features/request/CredentialsDisplay/hooks';
 import { useCredentialsDisplayItem } from '~/features/request/CredentialsDisplay/CredentialsDisplayItemContext';
 import { DataFieldLabelText } from '~/features/request/DataField/DataFieldLabelText';
-import { DateInput } from '~/features/request/shared/DateInput';
+import { DateInput } from '~/components/DateInput';
 
 /**
  * This component manages the input of type Date.

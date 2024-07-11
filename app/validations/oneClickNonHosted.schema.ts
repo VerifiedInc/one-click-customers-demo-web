@@ -1,9 +1,9 @@
 import * as zod from 'zod';
 
 import { phoneSchema } from './phone.schema';
-import { shortenBirthDateSchema } from './birthDate.schema';
+import { USDateSchema } from './date.schema';
 
 export const oneClickNonHostedSchema = zod.object({
   phone: phoneSchema,
-  birthDate: shortenBirthDateSchema,
+  birthDate: USDateSchema,
 });

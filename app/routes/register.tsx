@@ -67,7 +67,7 @@ export const action: ActionFunction = async ({ request }) => {
 
         // Format DDMM to YYYY-DD-MM to comply with on of the POST 1-click request body validation field
         const formatterdBirthDate = birthDate
-          ? dateUtils.toYYYYDDMM(dateUtils.formatDateMMDD(birthDate))
+          ? dateUtils.toYYYYDDMM(birthDate)
           : undefined;
 
         const options: Partial<OneClickOptions> = {
