@@ -63,7 +63,7 @@ workflows:
             - Slack-Context
           account_id: '408067220840'
           repo: 1click-customers-demo-web
-          deployment: one-click-customer-demo-web
+          deployment: one-click-customers-demo-web
           cluster_name: dev-account-saas-cluster
           namespace: demos
           image_tag: dev-latest
@@ -127,7 +127,7 @@ workflows:
             - Slack-Context
           account_id: 058264190665
           repo: 1click-customers-demo-web
-          deployment: one-click-customer-demo-web
+          deployment: one-click-customers-demo-web
           cluster_name: staging-account-core-cluster
           namespace: demos
           image_tag: '${CIRCLE_TAG}'
@@ -177,7 +177,7 @@ workflows:
             - Slack-Context
           account_id: '408067220840'
           repo: 1click-customers-demo-web
-          deployment: one-click-customer-demo-web
+          deployment: one-click-customers-demo-web
           cluster_name: dev-account-saas-cluster
           namespace: demos
           image_tag: test-latest
