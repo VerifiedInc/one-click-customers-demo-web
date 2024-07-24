@@ -72,7 +72,11 @@ export function OneClickFormNonHosted() {
 
       // DateInput returns a timestamp string when the date is valid, otherwise an empty string.
       if (field.name === 'birthDate' && value) {
-        value = new Intl.DateTimeFormat('us').format(Number(value));
+        value = new Intl.DateTimeFormat('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        }).format(Number(value));
       }
 
       field.change(value);
