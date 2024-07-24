@@ -57,6 +57,7 @@
     "@socket.io/redis-adapter": "^8.3.0",
     "@tanstack/react-query": "^5.50.1",
     "@verifiedinc/core-types": "github:VerifiedInc/core-types#0.47.0",
+    "@verifiedinc/shared-ui-elements": "^0.3.0",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "codemirror": "^6.0.1",

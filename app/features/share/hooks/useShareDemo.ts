@@ -1,3 +1,5 @@
+import { wrapPromise } from '@verifiedinc/shared-ui-elements/utils';
+
 export function useShareDemo() {
   const handleShareDemo = () => {
     const currentUrl = new URL(window.location.href);
@@ -19,7 +21,7 @@ export function useShareDemo() {
     }
 
     if ('share' in window.navigator) {
-      window.navigator.share({ url: url.toString() });
+      wrapPromise(window.navigator.share({ url: url.toString() }));
     } else {
       // Fallback for browsers that don't support Web Share API.
       // Copy the URL to clipboard.
