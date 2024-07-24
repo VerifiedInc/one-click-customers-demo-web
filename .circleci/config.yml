@@ -84,6 +84,8 @@ workflows:
       - unumid/lint-and-test:
           compile_script_name: 'build'
           enable_slack_failure_notification: true
+          context:
+            - Github-Packages
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+.*$/
