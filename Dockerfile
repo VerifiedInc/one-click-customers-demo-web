@@ -14,6 +14,9 @@ COPY package-lock.json /app/
 
 WORKDIR /app
 
+ARG GITHUB_TOKEN
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > .npmrc && echo "@verifiedinc:registry=https://npm.pkg.github.com" >> .npmrc
+
 RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # using "ci" to install dependencies strictly from the package-lock file

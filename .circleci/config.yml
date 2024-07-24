@@ -7,6 +7,8 @@ workflows:
   lint-and-test:
     jobs:
       - unumid/lint-and-test:
+          context:
+            - Github-Packages
           compile_script_name: 'build'
           filters:
             branches:
@@ -16,6 +18,8 @@ workflows:
   build-and-deploy:
     jobs:
       - unumid/lint-and-test:
+          context:
+            - Github-Packages
           compile_script_name: 'build'
           enable_slack_failure_notification: true
           filters:
@@ -27,6 +31,7 @@ workflows:
           requires:
             - unumid/lint-and-test
           context:
+            - Github-Packages
             - AWS-Root-Account
             - Slack-Context
           account_id_1: '408067220840'
@@ -42,6 +47,7 @@ workflows:
           requires:
             - unumid/lint-and-test
           context:
+            - Github-Packages
             - Slack-Context
             - Sentry-Context
           script_name: sentry:upload_sourcemaps
@@ -59,6 +65,7 @@ workflows:
           requires:
             - unumid/build-and-push-image
           context:
+            - Github-Packages
             - AWS-Root-Account
             - Slack-Context
           account_id: '408067220840'
@@ -88,6 +95,7 @@ workflows:
           requires:
             - unumid/lint-and-test
           context:
+            - Github-Packages
             - AWS-Root-Account
             - Slack-Context
           account_id_1: 058264190665
@@ -105,6 +113,7 @@ workflows:
           requires:
             - unumid/lint-and-test
           context:
+            - Github-Packages
             - Slack-Context
             - Sentry-Context
           script_name: sentry:upload_sourcemaps
@@ -123,6 +132,7 @@ workflows:
           requires:
             - unumid/build-and-push-image-staging
           context:
+            - Github-Packages
             - AWS-Root-Account
             - Slack-Context
           account_id: 058264190665
@@ -143,6 +153,7 @@ workflows:
       - unumid/build-and-push-image:
           name: unumid/build-and-push-image-test
           context:
+            - Github-Packages
             - AWS-Root-Account
             - Slack-Context
           account_id_1: '408067220840'
@@ -156,6 +167,7 @@ workflows:
 
       - unumid/build-and-upload-sentry-sourcemaps:
           context:
+            - Github-Packages
             - Slack-Context
             - Sentry-Context
           script_name: sentry:upload_sourcemaps
@@ -173,6 +185,7 @@ workflows:
           requires:
             - unumid/build-and-push-image-test
           context:
+            - Github-Packages
             - AWS-Root-Account
             - Slack-Context
           account_id: '408067220840'

@@ -8,6 +8,7 @@ module.exports = {
     /dnd-core/,
     /react-dnd/,
     /react-dnd-html5-backend/,
+    /@verifiedinc\/shared-ui-elements/,
   ],
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
