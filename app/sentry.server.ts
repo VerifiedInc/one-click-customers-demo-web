@@ -25,5 +25,14 @@ export function initSentry() {
     ignoreErrors: ['query() call aborted', 'queryRoute() call aborted'],
     // Performance Monitoring
     tracesSampleRate: 1.0, // opting to record 100% of all transactions in all envs for now
+    beforeSendTransaction(event) {
+      // Ignore health/alive route to not consume the quota
+      if (event.transaction === '/health/alive') {
+        // Don't send the event to Sentry
+        return null;
+      }
+
+      return event;
+    },
   });
 }

@@ -59,6 +59,15 @@ export function initSentry() {
     // Session Replay On Error
     // Capture 100% of the session replay.
     replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+    beforeSendTransaction(event) {
+      // Ignore health/alive route to not consume the quota
+      if (event.transaction === '/health/alive') {
+        // Don't send the event to Sentry
+        return null;
+      }
+
+      return event;
+    },
   });
 }
 
