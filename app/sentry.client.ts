@@ -61,7 +61,10 @@ export function initSentry() {
     replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
     beforeSendTransaction(event) {
       // Ignore health/alive route to not consume the quota
-      if (event.transaction === '/health/alive') {
+      if (
+        event.transaction === 'routes/health.alive' ||
+        event.transaction === 'health/alive'
+      ) {
         // Don't send the event to Sentry
         return null;
       }
